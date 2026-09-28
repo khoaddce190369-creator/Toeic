@@ -395,6 +395,10 @@ img{max-width:100%;height:auto}
   /* Progress Table */
   .dt-head,.dt-row{grid-template-columns:36px 1fr 80px 70px;padding:10px 14px;font-size:12.5px}
   .dt-head>*:nth-child(5),.dt-row>*:nth-child(5){display:none}
+
+  /* Tracker bar */
+  .tracker-bar{padding:14px 16px;margin-bottom:16px}
+  .tb-title{font-size:16px}
 }
 
 @media(max-width:480px){
@@ -528,6 +532,18 @@ img{max-width:100%;height:auto}
   /* Toast */
   #toast-container{top:10px;left:10px;right:10px}
   .toast{max-width:100%;width:100%;padding:9px 12px;font-size:12px}
+
+  /* Tracker bar mobile */
+  .tracker-bar{padding:12px 12px;margin-bottom:12px}
+  .tb-main{flex-direction:column;align-items:flex-start;gap:10px}
+  .tb-title{font-size:15px}
+  .tb-subtitle{font-size:11px}
+  .tb-stats-wrap{width:100%;justify-content:space-between}
+  .tb-filters{gap:6px}
+  .tb-filter-btn{padding:5px 8px;font-size:11.5px;flex:1;text-align:center}
+  .lesson-footer-complete{padding:14px 12px;flex-direction:column;align-items:stretch;text-align:center;gap:10px}
+  .lesson-footer-complete .btn{width:100%;justify-content:center;min-height:38px}
+  .status-btn{padding:4px 10px;font-size:11px}
 }
 
 @media(max-width:360px){
@@ -537,6 +553,60 @@ img{max-width:100%;height:auto}
   .stats-grid,.progress-overview{grid-template-columns:1fr}
   .tab{padding:7px 10px;font-size:12px}
 }
+
+/* ── TRACKER BAR (QUICK STATUS & PROGRESS) ── */
+.tracker-bar{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:16px 20px;margin-bottom:20px;box-shadow:var(--sh-sm)}
+.tb-main{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+.tb-title{font-size:18px;font-weight:800;color:var(--h-from);letter-spacing:-.3px}
+.tb-subtitle{font-size:12px;color:var(--txt-sub);margin-top:2px}
+.tb-stats-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tb-stats-pill{display:inline-flex;align-items:center;gap:8px;background:var(--input-bg);
+  border:1px solid var(--border);padding:6px 14px;border-radius:100px;font-size:13px;font-weight:700;color:var(--txt)}
+.tb-stat-num{color:var(--accent);font-size:16px}
+.tb-stat-pct{background:var(--ok);color:#fff;padding:2px 8px;border-radius:100px;font-size:11px}
+.tb-actions{display:flex;gap:6px}
+.tb-progress-track{height:8px;background:var(--input-bg);border-radius:100px;overflow:hidden;
+  margin-bottom:14px;border:1px solid var(--border)}
+.tb-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--ok));
+  border-radius:100px;transition:width .5s cubic-bezier(.16,1,.3,1)}
+.tb-filters{display:flex;gap:8px;flex-wrap:wrap}
+.tb-filter-btn{background:var(--input-bg);border:1px solid var(--border);color:var(--txt-sub);
+  padding:6px 14px;border-radius:var(--r-sm);font-size:12.5px;font-weight:600;cursor:pointer;transition:.15s}
+.tb-filter-btn:hover{border-color:var(--border-h);color:var(--txt)}
+.tb-filter-btn.active{background:var(--h-from);border-color:var(--h-from);color:#fff}
+
+/* ── STATUS TOGGLE BUTTONS & CARDS ── */
+.status-btn{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;
+  font-size:12px;font-weight:700;cursor:pointer;border:1px solid transparent;transition:all .2s ease;
+  user-select:none;background:var(--input-bg);color:var(--txt-sub)}
+.status-btn:hover{transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.status-btn:active{transform:scale(.96)}
+.status-btn.badge-done{background:#dcfce7;color:#15803d;border-color:#86efac}
+.status-btn.badge-done:hover{background:#bbf7d0}
+.status-btn.badge-progress{background:#fef9c3;color:#a16207;border-color:#fde047}
+.status-btn.badge-progress:hover{background:#fef08a}
+.status-btn.badge-pending{background:#f1f5f9;color:var(--txt-sub);border-color:var(--border)}
+.status-btn.badge-pending:hover{background:#e2e8f0;color:var(--txt)}
+.status-btn .sb-icon{font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+
+/* Day card completion highlight */
+.day-card.is-done{border-color:#86efac;background:linear-gradient(180deg,#ffffff 0%,#f0fdf4 100%)}
+.day-card.is-done .dc-num{background:linear-gradient(135deg,#16a34a,#15803d)}
+
+/* Day detail header actions */
+.btn-status-done{background:#dcfce7;color:#15803d;border:1px solid #86efac;font-weight:700}
+.btn-status-done:hover{background:#fee2e2;color:#b91c1c;border-color:#fca5a5}
+.btn-status-undone{background:var(--card);color:var(--txt);border:1px solid var(--border);font-weight:600}
+.btn-status-undone:hover{background:#dcfce7;color:#15803d;border-color:#86efac}
+
+/* Lesson footer complete card */
+.lesson-footer-complete{margin-top:24px;padding:20px 24px;background:var(--card);
+  border:2px dashed var(--border);border-radius:var(--r);display:flex;align-items:center;
+  justify-content:space-between;gap:16px;flex-wrap:wrap}
+.lesson-footer-complete.is-done{background:#f0fdf4;border-color:#86efac;border-style:solid}
+.lfc-text strong{display:block;font-size:15px;color:var(--txt);margin-bottom:4px}
+.lfc-text p{font-size:13px;color:var(--txt-sub);margin:0}
 
 /* ── HIDE UNNECESSARY UI ── */
 .header,
@@ -676,20 +746,49 @@ img{max-width:100%;height:auto}
       <button class="filter-btn" onclick="filterDays('skills',this)"><span class="filter-dot" style="color:#5b21b6"></span>Kỹ Năng</button>
       <button class="filter-btn" onclick="filterDays('conv',this)"><span class="filter-dot" style="color:#c2410c"></span>Giao Tiếp</button>
     </div>
+    <!-- TIẾN ĐỘ & TRẠNG THÁI HỌC TẬP (FRONTEND STORAGE) -->
+    <div class="tracker-bar" id="tracker-bar">
+      <div class="tb-main">
+        <div class="tb-title-wrap">
+          <div class="tb-title">Tiến Độ Học Tập 48 Ngày</div>
+          <div class="tb-subtitle">Lưu trữ trên trình duyệt • Nhấn vào huy hiệu trạng thái trên mỗi ngày để chuyển đổi</div>
+        </div>
+        <div class="tb-stats-wrap">
+          <div class="tb-stats-pill">
+            <span class="tb-stat-num" id="tb-done-count">0</span>/48 hoàn thành
+            <span class="tb-stat-pct" id="tb-pct-badge">0%</span>
+          </div>
+          <div class="tb-actions">
+            <button class="btn btn-sm btn-secondary" onclick="exportData()" title="Xuất dữ liệu tiến độ ra file JSON">📥 Sao lưu</button>
+            <button class="btn btn-sm btn-secondary" onclick="importData()" title="Khôi phục tiến độ từ file JSON">📤 Khôi phục</button>
+          </div>
+        </div>
+      </div>
+      <div class="tb-progress-track">
+        <div class="tb-progress-fill" id="tb-progress-bar" style="width:0%"></div>
+      </div>
+      <div class="tb-filters">
+        <button class="tb-filter-btn active" data-filter="all" onclick="filterProgress('all', this)">Tất cả (48)</button>
+        <button class="tb-filter-btn" data-filter="done" onclick="filterProgress('done', this)">✓ Đã hoàn thành (<span id="tb-filter-done">0</span>)</button>
+        <button class="tb-filter-btn" data-filter="pending" onclick="filterProgress('pending', this)">○ Chưa hoàn thành (<span id="tb-filter-pending">48</span>)</button>
+      </div>
+    </div>
     <div class="days-grid" id="days-grid"></div>
   </div>
 
   <!-- DAY DETAIL VIEW -->
   <div id="view-day" class="view">
     <div class="detail-header">
-      <button class="back-btn" onclick="showView('dashboard')">← Back</button>
-      <div>
+      <button class="back-btn" onclick="showView('dashboard')">← Quay Lại</button>
+      <div style="flex:1;min-width:0">
         <div class="detail-title" id="day-title"></div>
         <div class="detail-sub" id="day-sub"></div>
       </div>
+      <div id="day-detail-action"></div>
     </div>
     <div class="tabs" id="day-tabs"></div>
     <div id="day-tab-contents"></div>
+    <div id="day-complete-footer"></div>
   </div>
 
   <!-- PROGRESS VIEW -->
@@ -2413,21 +2512,25 @@ function showView(v){
   document.getElementById('view-'+v).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(el=>el.classList.remove('active'));
   const nb=document.querySelector(`.nav-btn[onclick*="${v}"]`);if(nb)nb.classList.add('active');
-  if(v==='dashboard')renderDashboard();
+  if(v==='dashboard'){renderDashboard();updateTrackerBar();}
   else if(v==='progress')renderProgress();
   updateHeader();
 }
 
 function updateHeader(){
   const {done,avg}=getStats();
-  document.getElementById('h-done').textContent=done;
-  document.getElementById('h-avg').textContent=avg!=null?avg+'%':'—';
+  const hd=document.getElementById('h-done');
+  const ha=document.getElementById('h-avg');
+  if(hd) hd.textContent=done;
+  if(ha) ha.textContent=avg!=null?avg+'%':'—';
 }
 
 // ═══════════════════════════════════════════════
-// DASHBOARD
+// DASHBOARD & STATUS MANAGEMENT (FRONTEND PERSISTENCE)
 // ═══════════════════════════════════════════════
 let currentFilter='all';
+let statusFilter='all';
+
 function filterDays(f,btn){
   currentFilter=f;
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
@@ -2435,37 +2538,180 @@ function filterDays(f,btn){
   renderDashboard();
 }
 
+function filterProgress(s,btn){
+  statusFilter=s;
+  document.querySelectorAll('.tb-filter-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderDashboard();
+}
+
+function updateTrackerBar(){
+  const doneCount=DAYS.filter(d=>(progress[d.d]&&progress[d.d].status==='done')).length;
+  const pendingCount=DAYS.length-doneCount;
+  const pct=Math.round((doneCount/DAYS.length)*100);
+
+  const doneEl=document.getElementById('tb-done-count');
+  const pctEl=document.getElementById('tb-pct-badge');
+  const barEl=document.getElementById('tb-progress-bar');
+  const fDoneEl=document.getElementById('tb-filter-done');
+  const fPendingEl=document.getElementById('tb-filter-pending');
+
+  if(doneEl) doneEl.textContent=doneCount;
+  if(pctEl) pctEl.textContent=pct+'%';
+  if(barEl) barEl.style.width=pct+'%';
+  if(fDoneEl) fDoneEl.textContent=doneCount;
+  if(fPendingEl) fPendingEl.textContent=pendingCount;
+}
+
+function toggleDayStatus(dayNum, e){
+  if(e) e.stopPropagation();
+  if(!progress[dayNum]) progress[dayNum]={status:'pending',attempts:0};
+  const isCurrentlyDone = progress[dayNum].status==='done';
+  if(isCurrentlyDone){
+    progress[dayNum].status='pending';
+    toast(`Ngày ${dayNum}: Đã chuyển về Chưa hoàn thành`,'info');
+  } else {
+    progress[dayNum].status='done';
+    progress[dayNum].lastDate=today();
+    progress[dayNum].completedAt=new Date().toISOString();
+    toast(`Ngày ${dayNum}: Đã đánh dấu Hoàn thành! 🎉`,'success');
+  }
+  save();
+  renderDashboard();
+  updateTrackerBar();
+  updateHeader();
+  if(state.currentDay===dayNum){
+    renderDayStatusControls(dayNum);
+  }
+}
+
+function renderDayStatusControls(dayNum){
+  const p=progress[dayNum]||{status:'pending'};
+  const isDone=p.status==='done';
+  const actionEl=document.getElementById('day-detail-action');
+  if(actionEl){
+    actionEl.innerHTML=`<button class="btn btn-sm ${isDone?'btn-status-done':'btn-status-undone'}" onclick="toggleDayStatus(${dayNum})" title="Nhấn để chuyển đổi trạng thái Hoàn thành / Chưa hoàn thành">
+      <span style="font-weight:800;margin-right:4px">${isDone?'✓':'○'}</span>
+      <span>${isDone?'Đã hoàn thành':'Đánh dấu Hoàn thành'}</span>
+    </button>`;
+  }
+  const footerEl=document.getElementById('day-complete-footer');
+  if(footerEl){
+    footerEl.innerHTML=`<div class="lesson-footer-complete ${isDone?'is-done':''}">
+      <div class="lfc-text">
+        <strong>${isDone?'🎉 Bạn đã hoàn thành Ngày '+dayNum+'!':'📖 Đã học xong nội dung Ngày '+dayNum+'?'}</strong>
+        <p>${isDone?'Tiến độ đã được lưu trên trình duyệt của bạn. Bạn có thể nhấn để ôn lại sau.':'Nhấn nút bên dưới để lưu trạng thái Đã hoàn thành trên trình duyệt.'}</p>
+      </div>
+      <button class="btn ${isDone?'btn-secondary':'btn-primary'}" onclick="toggleDayStatus(${dayNum})">
+        ${isDone?'↩ Đánh dấu Chưa hoàn thành':'✓ Đánh dấu Đã hoàn thành'}
+      </button>
+    </div>`;
+  }
+}
+
+function exportData(){
+  try{
+    const data={
+      app:'48_ngay_lay_goc_tieng_anh',
+      version:'2.0',
+      exportedAt:new Date().toISOString(),
+      progress:progress
+    };
+    const jsonStr=JSON.stringify(data,null,2);
+    const blob=new Blob([jsonStr],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    a.download=`tien_do_tieng_anh_${today()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast('Đã xuất file sao lưu tiến độ thành công! 📥','success');
+  }catch(e){
+    toast('Không thể xuất file: '+e.message,'error');
+  }
+}
+
+function importData(){
+  const input=document.createElement('input');
+  input.type='file';
+  input.accept='.json,application/json';
+  input.onchange=(e)=>{
+    const file=e.target.files[0];
+    if(!file)return;
+    const reader=new FileReader();
+    reader.onload=(event)=>{
+      try{
+        const parsed=JSON.parse(event.target.result);
+        const importedProgress=parsed.progress||parsed;
+        if(typeof importedProgress!=='object'||importedProgress===null){
+          throw new Error('Dữ liệu không hợp lệ.');
+        }
+        progress=importedProgress;
+        save();
+        renderDashboard();
+        updateTrackerBar();
+        updateHeader();
+        toast('Đã khôi phục dữ liệu tiến độ thành công! 🎉','success');
+      }catch(err){
+        toast('Lỗi đọc file: '+err.message,'error');
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
 function renderDashboard(){
   const {done,avg}=getStats();
   const streak=calcStreak();
-  document.getElementById('sc-done').textContent=done;
-  document.getElementById('sc-avg').textContent=avg!=null?avg+'%':'—';
-  document.getElementById('sc-streak').textContent=streak;
+  const scDone=document.getElementById('sc-done');
+  const scAvg=document.getElementById('sc-avg');
+  const scStreak=document.getElementById('sc-streak');
+  if(scDone) scDone.textContent=done;
+  if(scAvg) scAvg.textContent=avg!=null?avg+'%':'—';
+  if(scStreak) scStreak.textContent=streak;
 
   const grid=document.getElementById('days-grid');
-  const filtered=DAYS.filter(d=>currentFilter==='all'||d.type===currentFilter);
+  const filtered=DAYS.filter(d=>{
+    const p=progress[d.d]||{status:'pending'};
+    const isDone=p.status==='done';
+    if(statusFilter==='done'&&!isDone)return false;
+    if(statusFilter==='pending'&&isDone)return false;
+    if(currentFilter!=='all'&&d.type!==currentFilter)return false;
+    return true;
+  });
+
+  updateTrackerBar();
 
   if(filtered.length===0){
-    grid.innerHTML='<div class="empty"><h3>No lessons found</h3><p>Try selecting a different filter.</p></div>';
+    const msg = statusFilter==='done'
+      ? 'Chưa có bài nào được đánh dấu hoàn thành.'
+      : statusFilter==='pending'
+      ? 'Tuyệt vời! Bạn đã hoàn thành tất cả các bài học.'
+      : 'Không tìm thấy bài học nào phù hợp.';
+    grid.innerHTML=`<div class="empty"><h3>${msg}</h3><p>Hãy thử chọn bộ lọc khác bên trên.</p></div>`;
     return;
   }
 
   grid.innerHTML=filtered.map((d,i)=>{
     const p=progress[d.d]||{status:'pending'};
     const status=p.status||'pending';
+    const isDone=status==='done';
     const score=p.score!=null?p.score:null;
-    const pct=score!=null?score:0;
+    const pct=isDone?100:(score!=null?score:0);
     const pbClass=pct>=75?'pb-green':pct>=40?'pb-amber':'pb-blue';
-    const statusBadge=status==='done'?'badge-done':status==='studying'?'badge-progress':'badge-pending';
-    const statusLabel=status==='done'?'Completed':status==='studying'?'In Progress':'Not Started';
+    const statusBadge=isDone?'badge-done':status==='studying'?'badge-progress':'badge-pending';
+    const statusLabel=isDone?'Đã hoàn thành':status==='studying'?'Đang học':'Chưa học';
     const scoreClass=score!=null?(score>=75?'high':score>=50?'mid':'low'):'';
     const hasAudio=d.audio&&d.audio.length>0;
     const pc=PAGE_COUNTS[d.d]||{lesson:0,quiz:0,answer:0};
-    const startLabel=status==='pending'?'Start':status==='studying'?'Continue':'Review';
+    const startLabel=isDone?'Xem lại':status==='studying'?'Học tiếp':'Bắt đầu';
 
-    return`<div class="day-card" onclick="openDay(${d.d})" style="animation-delay:${Math.min(i,20)*0.04}s">
+    return`<div class="day-card ${isDone?'is-done':''}" onclick="openDay(${d.d})" style="animation-delay:${Math.min(i,20)*0.04}s">
       <div class="dc-head">
-        <div class="dc-num">${d.d}</div>
+        <div class="dc-num">${isDone?'✓':d.d}</div>
         <div class="dc-info">
           <div class="dc-title">${esc(d.title)}</div>
           <div class="dc-meta">
@@ -2481,7 +2727,10 @@ function renderDashboard(){
           ${pc.lesson?`${pc.lesson}tr tài liệu`:''}
           ${pc.quiz?` | ${pc.quiz}tr đề thi`:''}
         </div>
-        <span class="badge ${statusBadge}">${statusLabel}</span>
+        <button class="status-btn ${statusBadge}" onclick="toggleDayStatus(${d.d}, event)" title="Nhấn để đổi trạng thái Hoàn thành / Chưa hoàn thành">
+          <span class="sb-icon">${isDone?'✓':'○'}</span>
+          <span class="sb-text">${statusLabel}</span>
+        </button>
         <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();openDay(${d.d})">${startLabel}</button>
       </div>
     </div>`;
@@ -2529,6 +2778,7 @@ function openDay(dayNum){
 
   initLessonNav(dayNum,'lesson',pc.lesson,'lesson');
   showView('day');
+  renderDayStatusControls(dayNum);
   if(hasAudio)setTimeout(()=>initAudioPlayer(day),100);
 }
 
@@ -2811,6 +3061,8 @@ function submitQuiz(){
   progress[dayNum].attempts=(progress[dayNum].attempts||0)+1;
   progress[dayNum].lastDate=today();
   save();
+  updateTrackerBar();
+  renderDayStatusControls(dayNum);
 
   const examEl=document.getElementById('tc-exam');
   const reviewHTML=qs.map((q,i)=>{
@@ -2972,14 +3224,14 @@ function renderProgress(){
     const p=progress[d.d]||{};
     const status=p.status||'pending';
     const statusBadge=status==='done'?'badge-done':status==='studying'?'badge-progress':'badge-pending';
-    const statusLabel=status==='done'?'Completed':status==='studying'?'In Progress':'Not Started';
+    const statusLabel=status==='done'?'Đã hoàn thành':status==='studying'?'Đang học':'Chưa học';
     const score=p.score!=null?p.score+'%':'—';
     return`<div class="dt-row" onclick="openDay(${d.d})">
       <span class="dt-day-num">${d.d}</span>
       <span style="font-size:13px;font-weight:500">${esc(d.title.length>45?d.title.slice(0,45)+'...':d.title)}</span>
       <span class="badge ${TYPE_BADGE[d.type]}">${TYPE_LABELS[d.type]}</span>
       <span style="font-weight:700;color:${p.score!=null?(p.score>=75?'var(--ok)':p.score>=50?'var(--warn)':'var(--err)'):'var(--txt-muted)'}">${score}</span>
-      <span class="badge ${statusBadge}">${statusLabel}</span>
+      <span class="badge ${statusBadge}" onclick="event.stopPropagation();toggleDayStatus(${d.d})" style="cursor:pointer" title="Nhấn để chuyển đổi trạng thái">${statusLabel}</span>
     </div>`;
   }).join('');
 }
@@ -2988,6 +3240,7 @@ function resetAll(){
   localStorage.removeItem('eng48_v2');
   progress={};
   renderDashboard();
+  updateTrackerBar();
   updateHeader();
   toast('Đã xóa toàn bộ dữ liệu học tập.','info');
 }
@@ -2997,6 +3250,7 @@ function resetAll(){
 // ═══════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded',()=>{
   renderDashboard();
+  updateTrackerBar();
   updateHeader();
 });
 </script>
